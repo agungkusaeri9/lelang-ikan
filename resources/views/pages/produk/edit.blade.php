@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -26,8 +26,8 @@
                             <input type="text" class="form-control" name="farm" id="farm" value="{{ $item->farm }}">
                         </div>
                         <div class="form-group">
-                            <label for="dob">Dob</label>
-                            <input type="text" class="form-control" name="dob" id="dob" value="{{ $item->dob }}">
+                            <label for="DOB">DOB</label>
+                            <input type="text" class="form-control" name="DOB" id="DOB" value="{{ $item->DOB }}">
                         </div>
                         <div class="form-group">
                             <label for="certi">Sertifikat</label>
@@ -42,16 +42,8 @@
                             <input type="number" class="form-control" name="panjang" id="panjang" value="{{ $item->panjang }}">
                         </div>
                         <div class="form-group">
-                            <label for="ob">Ob</label>
-                            <input type="text" class="form-control" name="ob" id="ob" value="{{ $item->ob }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="created_by">Created By</label>
-                            <input type="text" class="form-control" name="created_by" id="created_by" value="{{ $item->created_by }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="updated_by">Updated By</label>
-                            <input type="text" class="form-control" name="updated_by" id="updated_by" value="{{ $item->updated_by }}">
+                            <label for="OB">OB</label>
+                            <input type="text" class="form-control" name="OB" id="OB" value="{{ $item->OB }}">
                         </div>
                         <div class="form-group row">
                             <div class="col-2">

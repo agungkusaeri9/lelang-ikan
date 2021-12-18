@@ -12,8 +12,8 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <h6>Data Member</h6>
-                        <a href="{{ route('member.create') }}" class="btn btn-sm btn-primary">Tambah Member</a>
+                        <h6>Setting</h6>
+                        <a href="{{ route('m-setting.create') }}" class="btn btn-sm btn-primary">Tambah Seting</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -21,13 +21,8 @@
                         <thead>
                             <tr>
                                 <th width=20>No.</th>
-                                <th>Nama</th>
-                                <th>ID Telegram</th>
-                                <th>Email</th>
-                                <th>No. Hp</th>
-                                <th>Kode Prop</th>
-                                <th>Kode Kota</th>
-                                <th>Alamat</th>
+                                <th>Name Setting</th>
+                                <th>Value</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
@@ -36,13 +31,8 @@
                             @foreach ($items as $item)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td>{{ $item->nama }}</td>
-                                <td>{{ $item->id_telegram_user }}</td>
-                                <td>{{ $item->email}}</td>
-                                <td>{{ $item->no_hp}}</td>
-                                <td>{{ $item->kode_prop}}</td>
-                                <td>{{ $item->kode_kota}}</td>
-                                <td>{{ $item->alamat}}</td>
+                                <td>{{ $item->name_setting }}</td>
+                                <td>{{ $item->value }}</td>
                                 <td>
                                     @if ($item->status == 1)
                                     Aktif
@@ -51,9 +41,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('member.show', $item->id) }}" class="btn btn-sm btn-warning">Detail</a>
-                                    <a href="{{ route('member.edit', $item->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                    <form action="{{ route('member.destroy', $item->id) }}" method="post" class="d-inline">
+                                    <a href="{{ route('m-setting.edit', $item->id_setting) }}" class="btn btn-sm btn-info">Edit</a>
+                                    <form action="{{ route('m-setting.destroy', $item->id_setting) }}" method="post" class="d-inline">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-sm btn-danger">Hapus</button>
@@ -71,18 +60,13 @@
 @endsection
 @push('styles')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css">
 @endpush
 @push('scripts')
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#table').DataTable({
-            responsive: true
-        });
+        $('#table').DataTable();
     } );
 </script>
 @endpush

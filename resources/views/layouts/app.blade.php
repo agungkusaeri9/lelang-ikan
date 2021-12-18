@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? 'Dashboard' }}</title>
+    <title>{{ $title ?? 'Lelang Ikan' }}</title>
 
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
@@ -25,7 +25,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Bot Telegram
                 </a>
@@ -36,12 +36,23 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @role('admin|master admin|member')
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
                         </li>
+                        @endrole
+                        @role('master admin')
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}" class="nav-link">Data User</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pemenang-lelang.index') }}" class="nav-link">Pemenang Lelang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('m-setting.index') }}" class="nav-link">Setting</a>
+                        </li>
+                        @endrole
+                        @role('admin|master admin')
                         <li class="nav-item">
                             <a href="{{ route('member.index') }}" class="nav-link">Data Member</a>
                         </li>
@@ -56,10 +67,24 @@
                               Tempat Sampah
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @role('master admin')
                                 <a class="dropdown-item" href="{{ route('trash.user') }}">User</a>
-                              <a class="dropdown-item" href="{{ route('trash.member') }}">Member</a>
+                                @endrole
+                                <a class="dropdown-item" href="{{ route('trash.member') }}">Member</a>
+                                <a class="dropdown-item" href="{{ route('trash.produk') }}">Produk</a>
                             </div>
                         </li>
+                        @endrole
+                        @role('member')
+                        <li class="nav-item">
+                            <a href="{{ route('produk-lelang.index') }}" class="nav-link">Produk Lelang</a>
+                        </li>
+                        @endrole
+                        @role('member|admin|master admin')
+                        <li class="nav-item">
+                            <a href="{{ route('log-bidding.index') }}" class="nav-link">Log Bidding</a>
+                        </li>
+                        @endrole
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -69,11 +94,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

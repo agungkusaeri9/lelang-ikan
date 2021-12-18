@@ -42,6 +42,7 @@ class ProdukController extends Controller
 
         $data = request()->all();
         $data['foto'] = request()->file('foto')->store('produk','public');
+        $data['created_by'] = auth()->user()->name;
         Produk::create($data);
 
         return redirect()->route('produk.index')->with('success','Produk berhasil disimpan');
@@ -97,6 +98,7 @@ class ProdukController extends Controller
         }else{
             $data['foto'] = $item->foto;
         }
+        $data['updated_by'] = auth()->user()->name;
         $item->update($data);
 
         return redirect()->route('produk.index')->with('success','Produk berhasil disimpan');
@@ -111,7 +113,6 @@ class ProdukController extends Controller
     public function destroy($id)
     {
         $item = Produk::findOrFail($id);
-        Storage::disk('public')->delete($item->foto);
         $item->delete();
 
         return redirect()->route('produk.index')->with('success','Produk berhasil dihapus');

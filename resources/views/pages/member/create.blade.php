@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -13,12 +13,34 @@
                     <form action="{{ route('member.store') }}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Nama</label>
-                            <input type="text" class="form-control" name="name" id="name">
+                            <label for="nama">Nama</label>
+                            <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama">
+                            @error('nama')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="kode_member">Kode</label>
-                            <input type="text" class="form-control" name="kode_member" id="kode_member">
+                            <label for="id_telegram_user">ID Telegram</label>
+                            <input type="text" class="form-control @error('id_telegram_user') is-invalid @enderror"  name="id_telegram_user" id="id_telegram_user">
+                            @error('id_telegram_user')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="no_hp">No. Hp</label>
+                            <input type="text" class="form-control" name="no_hp" id="no_hp">
+                        </div>
+                        <div class="form-group">
+                            <label for="kode_prop">Kode Prop</label>
+                            <input type="text" class="form-control" name="kode_prop" id="kode_prop">
+                        </div>
+                        <div class="form-group">
+                            <label for="kode_kota">Kode Kota</label>
+                            <input type="text" class="form-control" name="kode_kota" id="kode_kota">
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
@@ -26,11 +48,29 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" name="email" id="email">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror"  name="email" id="email">
+                            @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" id="password">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password">
+                            @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select name="status" id="status" class="form-control">
+                                <option value="">-- Pilih Status --</option>
+                                <option value="0">Tidak Aktif</option>
+                                <option value="1">Aktif</option>
+                            </select>
                         </div>
                         <div class="form-group">
                            <button class="btn btn-primary float-right">Simpan</button>

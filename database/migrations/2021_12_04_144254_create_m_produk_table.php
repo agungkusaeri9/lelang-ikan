@@ -15,18 +15,19 @@ class CreateMProdukTable extends Migration
     {
         Schema::create('m_produk', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('nama',30);
             $table->string('foto');
-            $table->string('jenis');
+            $table->string('jenis',30);
             $table->text('deskripsi');
-            $table->string('farm')->nullable();
-            $table->string('dob')->nullable();
+            $table->string('farm',100)->nullable();
+            $table->integer('DOB')->nullable();
             $table->string('certi')->nullable();
             $table->integer('panjang')->nullable();
-            $table->string('ob')->nullable();
+            $table->integer('OB')->nullable();
             $table->integer('status')->default(0);
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
+            $table->string('created_by',50)->nullable();
+            $table->string('updated_by',50)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMLelangTable extends Migration
+class CreateLogBiddingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateMLelangTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_lelang', function (Blueprint $table) {
+        Schema::create('t_log_bidding', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->timestamp('mulai_lelang');
-            $table->timestamp('selesai_lelang')->nullable();
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
+            $table->bigInteger('id_telegram_user')->nullable();
+            $table->integer('id_lelang')->nullable();
+            $table->string('nama_produk');
+            $table->bigInteger('harga');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateMLelangTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_lelang');
+        Schema::dropIfExists('log_bidding');
     }
 }

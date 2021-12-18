@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -25,8 +25,8 @@
                             <input type="text" class="form-control" name="farm" id="farm">
                         </div>
                         <div class="form-group">
-                            <label for="dob">Dob</label>
-                            <input type="text" class="form-control" name="dob" id="dob">
+                            <label for="DOB">Dob</label>
+                            <input type="text" class="form-control" name="DOB" id="DOB">
                         </div>
                         <div class="form-group">
                             <label for="deskripsi">Deskripsi</label>
@@ -37,8 +37,8 @@
                             <input type="number" class="form-control" name="panjang" id="panjang">
                         </div>
                         <div class="form-group">
-                            <label for="ob">Ob</label>
-                            <input type="text" class="form-control" name="ob" id="ob">
+                            <label for="OB">Ob</label>
+                            <input type="text" class="form-control" name="OB" id="OB">
                         </div>
                         <div class="form-group">
                             <label for="foto">Foto</label>

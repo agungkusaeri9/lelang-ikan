@@ -6,24 +6,27 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <h6>Edit Lelang</h6>
+                        <h6>Tambah Setting</h6>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('lelang.update', $item->id) }}" method="post">
+                    <form action="{{ route('m-setting.store') }}" method="post">
                         @csrf
-                        @method('patch')
                         <div class="form-group">
-                            <label for="nama">Nama</label>
-                            <input type="text" class="form-control" name="nama" id="nama" value="{{ $item->nama }}">
+                            <label for="name_setting">Name Setting</label>
+                            <input type="text" class="form-control" name="name_setting" id="name_setting">
                         </div>
                         <div class="form-group">
-                            <label for="mulai_lelang">Mulai Lelang</label>
-                            <input type="datetime-local" class="form-control" name="mulai_lelang" id="mulai_lelang" value="{{ $item->mulai_lelang->translatedFormat('Y-m-d\TH:i') }}">
+                            <label for="value">Value</label>
+                            <input type="text" class="form-control" name="value" id="value">
                         </div>
                         <div class="form-group">
-                            <label for="selesai_lelang">Selesai Lelang</label>
-                            <input type="datetime-local" class="form-control" name="selesai_lelang" id="selesai_lelang" value="{{ $item->selesai_lelang->translatedFormat('Y-m-d\TH:i') }}">
+                            <label for="status">Status</label>
+                           <select name="status" id="status" class="form-control">
+                               <option value="" selected disabled>-- Pilih Status --</option>
+                               <option value="0">Tidak Aktif</option>
+                               <option value="1">Aktif</option>
+                           </select>
                         </div>
                         <div class="form-group">
                            <button class="btn btn-primary float-right">Simpan</button>

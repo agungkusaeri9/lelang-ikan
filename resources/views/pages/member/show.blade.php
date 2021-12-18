@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
@@ -12,20 +12,42 @@
                 <div class="card-body">
                     <table class="table table-borderless">
                         <tr>
-                            <th width="150">Kode</th>
-                            <td>{{ $item->kode_member }}</td>
+                            <th width="150">Nama</th>
+                            <td>{{ $item->nama }}</td>
                         </tr>
                         <tr>
-                            <th>Nama</th>
-                            <td>{{ $item->nama_member }}</td>
+                            <th>ID Telegram</th>
+                            <td>{{ $item->id_telegram_user }}</td>
                         </tr>
                         <tr>
                             <th>Email</th>
                             <td>{{ $item->user->email }}</td>
                         </tr>
                         <tr>
+                            <th>No. Hp</th>
+                            <td>{{ $item->no_hp }}</td>
+                        </tr>
+                        <tr>
+                            <th>Kode Prop</th>
+                            <td>{{ $item->kode_prop }}</td>
+                        </tr>
+                        <tr>
+                            <th>Kode Kota</th>
+                            <td>{{ $item->kode_kota }}</td>
+                        </tr>
+                        <tr>
                             <th>Alamat</th>
                             <td>{{ $item->alamat }}</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>
+                                @if ($item->status == 1)
+                                Aktif
+                                @else 
+                                Tidak Aktif
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>Aksi</th>

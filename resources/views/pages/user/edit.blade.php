@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -22,7 +22,7 @@
                             <input type="email" class="form-control" name="email" id="email" value="{{ $item->email }}">
                         </div>
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="role">Role</label>
                             <select name="role" id="role" class="form-control">
                                 <option value="" selected disabled>--Pilih Role --</option>
                                 @foreach ($roles as $role)

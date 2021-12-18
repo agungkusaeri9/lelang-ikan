@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Lelang;
+use App\LogBidding;
+use App\Produk;
 use Illuminate\Http\Request;
 
 class LelangController extends Controller
@@ -32,7 +34,21 @@ class LelangController extends Controller
         ]);
 
         $data = request()->all();
-        Lelang::create($data);
+        $data['created_by'] = auth()->user()->name;
+        $lelang = Lelang::create($data);
+        $produk = Produk::whereDate('created_at',$lelang->mulai_lelang->translatedFormat('Y-m-d'))->get();
+        if(request('harga_lelang')){
+            $harga = request('harga_lelang');
+        }else{
+            $harga = 0;
+        }
+        foreach($produk as $pd){
+            LogBidding::create([
+                'id_lelang' => $lelang->id,
+                'nama_produk' => $pd->nama,
+                'harga' => $harga
+            ]);
+        }
 
         return redirect()->route('lelang.index')->with('success','Lelang berhasil disimpan');
     }
@@ -54,8 +70,9 @@ class LelangController extends Controller
             'selesai_lelang' => ['required']
         ]);
 
-        $data = request()->all();
         $item = Lelang::findOrFail($id);
+        $data = request()->all();
+        $data['updated_by'] = auth()->user()->name;
         $item->update($data);
 
         return redirect()->route('lelang.index')->with('success','Lelang berhasil disimpan');

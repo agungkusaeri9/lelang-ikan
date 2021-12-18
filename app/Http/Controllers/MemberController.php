@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Member;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class MemberController extends Controller
 {
     public function index()
     {
-        $items = Member::orderBy('nama_member','ASC')->get();
+        $items = Member::orderBy('nama','ASC')->get();
         return view('pages.member.index',[
             'title' => 'Data Member',
             'items' => $items
@@ -27,23 +28,21 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'name' => ['required'],
-            'email' => ['required','email','unique:users,email'],
-            'password' => ['required']
+            'nama' => ['required'],
+            'email' => ['required','email','unique:m_member,email'],
+            'password' => ['required'],
+            'id_telegram_user' => ['required']
         ]);
 
         $member = User::create([
-            'name' => request('name'),
+            'name' => request('nama'),
             'email' => request('email'),
-            'password' => bcrypt('password')
+            'password' => bcrypt(request('password'))
         ]);
 
         $member->assignRole('member');
-        $member->member()->create([
-            'nama_member' => request('name'),
-            'kode_member' => request('kode_member'),
-            'alamat' => request('alamat')
-        ]);
+        $data = request()->all();
+        $member->member()->create($data);
 
         return redirect()->route('member.index')->with('success','Member berhasil disimpan');
     }
@@ -68,15 +67,18 @@ class MemberController extends Controller
 
     public function update($id)
     {
-        $member = Member::findOrFail($id);
-        $member->update([
-            'nama_member' => request('nama_member'),
-            'kode_member' => request('kode_member'),
-            'alamat' => request('alamat')
+        request()->validate([
+            'nama' => ['required'],
+            'email' => ['required','email',Rule::unique('m_member','email')->ignore($id)],
+            'id_telegram_user' => ['required']
         ]);
+        $member = Member::findOrFail($id);
+        $data = request()->all();
+        $member->update($data);
 
         $member->user()->update([
-            'name' => request('nama_member')
+            'name' => request('nama'),
+            'email' => request('email')
         ]);
 
         return redirect()->route('member.index')->with('success','Member berhasil disimpan');

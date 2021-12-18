@@ -12,23 +12,26 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <h6>Data Member</h6>
-                        <a href="{{ route('member.create') }}" class="btn btn-sm btn-primary">Tambah Member</a>
+                        <h6>Data Produk</h6>
+                        <a href="{{ route('produk.create') }}" class="btn btn-sm btn-primary">Tambah Produk</a>
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered" id="table">
+                    <table class="table table-bordered" id="table" style="width: 100%">
                         <thead>
                             <tr>
                                 <th width=20>No.</th>
+                                <th>Foto</th>
                                 <th>Nama</th>
-                                <th>ID Telegram</th>
-                                <th>Email</th>
-                                <th>No. Hp</th>
-                                <th>Kode Prop</th>
-                                <th>Kode Kota</th>
-                                <th>Alamat</th>
-                                <th>Status</th>
+                                <th>Jenis</th>
+                                <th>Deskripsi</th>
+                                <th>Farm</th>
+                                <th>DOB</th>
+                                <th>Sertifikat</th>
+                                <th>Panjang</th>
+                                <th>OB</th>
+                                <th>Created By</th>
+                                <th>Updated By</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -36,27 +39,28 @@
                             @foreach ($items as $item)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td>{{ $item->nama }}</td>
-                                <td>{{ $item->id_telegram_user }}</td>
-                                <td>{{ $item->email}}</td>
-                                <td>{{ $item->no_hp}}</td>
-                                <td>{{ $item->kode_prop}}</td>
-                                <td>{{ $item->kode_kota}}</td>
-                                <td>{{ $item->alamat}}</td>
                                 <td>
-                                    @if ($item->status == 1)
-                                    Aktif
-                                    @else
-                                    Tidak Aktif
-                                    @endif
+                                    <img src="{{ $item->foto() }}" alt="" class="img-fluid" style="max-height: 80px;max-width:80px">
                                 </td>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->jenis}}</td>
+                                <td>{{ $item->deskripsi}}</td>
+                                <td>{{ $item->farm}}</td>
+                                <td>{{ $item->DOB}}</td>
+                                <td>{{ $item->certi}}</td>
+                                <td>{{ $item->panjang}}</td>
+                                <td>{{ $item->OB}}</td>
+                                <td>{{ $item->created_by}}</td>
+                                <td>{{ $item->updated_by}}</td>
                                 <td>
-                                    <a href="{{ route('member.show', $item->id) }}" class="btn btn-sm btn-warning">Detail</a>
-                                    <a href="{{ route('member.edit', $item->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                    <form action="{{ route('member.destroy', $item->id) }}" method="post" class="d-inline">
+                                    <form action="{{ route('trash.produk.restore', $item->id) }}" method="post" class="d-inline">
+                                        @csrf
+                                        <button class="btn btn-sm btn-info">Restore</button>
+                                    </form>
+                                    <form action="{{ route('trash.produk.destroy.permanent', $item->id) }}" method="post" class="d-inline">
                                         @csrf
                                         @method('delete')
-                                        <button class="btn btn-sm btn-danger">Hapus</button>
+                                        <button class="btn btn-sm btn-danger">Hapus Permanen</button>
                                     </form>
                                 </td>
                             </tr>

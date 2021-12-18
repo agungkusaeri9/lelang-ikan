@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container-fluid">
     @if (session('success'))
         <div class="alert alert-success">
             <strong>Berhasil !</strong>
@@ -46,10 +46,10 @@
                                 <td>{{ $item->jenis}}</td>
                                 <td>{{ $item->deskripsi}}</td>
                                 <td>{{ $item->farm}}</td>
-                                <td>{{ $item->dob}}</td>
+                                <td>{{ $item->DOB}}</td>
                                 <td>{{ $item->certi}}</td>
                                 <td>{{ $item->panjang}}</td>
-                                <td>{{ $item->ob}}</td>
+                                <td>{{ $item->OB}}</td>
                                 <td>{{ $item->created_by}}</td>
                                 <td>{{ $item->updated_by}}</td>
                                 <td>

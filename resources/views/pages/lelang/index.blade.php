@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container-fluid">
     @if (session('success'))
         <div class="alert alert-success">
             <strong>Berhasil !</strong>
@@ -34,8 +34,8 @@
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama }}</td>
-                                <td>{{ $item->mulai_lelang->translatedFormat('d/m/Y') }}</td>
-                                <td>{{ $item->selesai_lelang->translatedFormat('d/m/Y')}}</td>
+                                <td>{{ $item->mulai_lelang->translatedFormat('d/m/Y H:i:s') }}</td>
+                                <td>{{ $item->selesai_lelang->translatedFormat('d/m/Y H:i:s')}}</td>
                                 <td>{{ $item->created_by }}</td>
                                 <td>{{ $item->updated_by }}</td>
                                 <td>

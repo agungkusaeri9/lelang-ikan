@@ -12,8 +12,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <h6>Data User</h6>
-                        <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Tambah User</a>
+                        <h6>Data Log Bidding</h6>
                     </div>
                 </div>
                 <div class="card-body">
@@ -21,27 +20,20 @@
                         <thead>
                             <tr>
                                 <th width=20>No.</th>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Aksi</th>
+                                <th>ID Telegram</th>
+                                <th>Lelang</th>
+                                <th>Nama Produk</th>
+                                <th>Harga</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->email }}</td>
-                                <td>{{ $item->roles->pluck('name')->first() }}</td>
-                                <td>
-                                    <a href="{{ route('users.edit', $item->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                    <form action="{{ route('users.destroy', $item->id) }}" method="post" class="d-inline">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="btn btn-sm btn-danger">Hapus</button>
-                                    </form>
-                                </td>
+                                <td>{{ $item->id_telegram_user ?? ' - ' }}</td>
+                                <td>{{ $item->lelang->nama ?? ' - ' }}</td>
+                                <td>{{ $item->nama_produk }}</td>
+                                <td>Rp. {{  number_format($item->harga)  }}</td>
                             </tr>
                         @endforeach
                         </tbody>

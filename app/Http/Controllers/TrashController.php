@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Member;
+use App\Produk;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TrashController extends Controller
 {
@@ -54,5 +56,30 @@ class TrashController extends Controller
             
         $user->member()->forceDelete();
         return redirect()->route('trash.user')->with('success','Data User berhasil dihapus secara permanen');
+    }
+
+    public function produk()
+    {
+        $items = Produk::onlyTrashed()->get();
+        return view('pages.trash.produk',[
+            'title' => 'Keranjang Sampah Produk',
+            'items' => $items
+        ]);
+    }
+
+    public function produkRestore($id)
+    {
+        $produk = Produk::withTrashed()->findOrFail($id);
+            
+        $produk->restore();
+        return redirect()->route('trash.produk')->with('success','Data produk berhasil dipulihkan');
+    }
+    public function produkDestroyPermanent($id)
+    {
+        $produk = Produk::withTrashed()->findOrFail($id);
+        
+        $produk->forceDelete();
+        Storage::disk('public')->delete($produk->foto);
+        return redirect()->route('trash.produk')->with('success','Data produk berhasil dihapus secara permanen');
     }
 }
