@@ -54,6 +54,9 @@
                         @endrole
                         @role('admin|master admin')
                         <li class="nav-item">
+                            <a href="{{ route('group.index') }}" class="nav-link">Group</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('member.index') }}" class="nav-link">Data Member</a>
                         </li>
                         <li class="nav-item">
