@@ -14,42 +14,57 @@
                         @csrf
                         @method('patch')
                         <div class="form-group">
-                            <label for="nama">Nama</label>
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" value="{{ $item->nama }}">
-                            @error('nama')
+                            <label for="nama_lengkap">Nama Lengkap</label>
+                            <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" name="nama_lengkap" id="nama_lengkap" value="{{ $item->nama_lengkap }}">
+                            @error('nama_lengkap')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="id_telegram_user">ID Telegram</label>
-                            <input type="text" class="form-control @error('id_telegram_user') is-invalid @enderror"  name="id_telegram_user" id="id_telegram_user" value="{{ $item->id_telegram_user }}">
-                            @error('id_telegram_user')
+                            <label for="tanggal_lahir">Tanggal Lahir</label>
+                            <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror"  name="tanggal_lahir" id="tanggal_lahir" value="{{ $item->tanggal_lahir->translatedFormat('Y-m-d') }}">
+                            @error('tanggal_lahir')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="no_hp">No. Hp</label>
-                            <input type="text" class="form-control" name="no_hp" id="no_hp" value="{{ $item->no_hp }}">
+                            <label for="provinsi_tempat_tinggal">Provinsi Tempat Tinggal</label>
+                            <input type="text" class="form-control @error('provinsi_tempat_tinggal') is-invalid @enderror"  name="provinsi_tempat_tinggal" id="provinsi_tempat_tinggal" value="{{ $item->provinsi_tempat_tinggal }}">
+                            @error('provinsi_tempat_tinggal')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="kode_prop">Kode Prop</label>
-                            <input type="text" class="form-control" name="kode_prop" id="kode_prop" value="{{ $item->kode_prop }}">
+                            <label for="kota_tempat_tinggal">Kota Tempat Tinggal</label>
+                            <input type="text" class="form-control @error('kota_tempat_tinggal') is-invalid @enderror"  name="kota_tempat_tinggal" id="kota_tempat_tinggal" value="{{ $item->kota_tempat_tinggal }}">
+                            @error('kota_tempat_tinggal')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="kode_kota">Kode Kota</label>
-                            <input type="text" class="form-control" name="kode_kota" id="kode_kota" value="{{ $item->kode_kota }}">
+                            <label for="alamat_tinggal">Alamat Tinggal</label>
+                            <textarea type="text" class="form-control" name="alamat_tinggal" id="alamat_tinggal" cols="30" rows="5">{{ $item->alamat_tinggal }}</textarea>
                         </div>
                         <div class="form-group">
-                            <label for="alamat">Alamat</label>
-                            <textarea type="text" class="form-control" name="alamat" id="alamat" cols="30" rows="5">{{ $item->alamat }}</textarea>
+                            <label for="no_telp">No. Telepon</label>
+                            <input type="text" class="form-control @error('no_telp') is-invalid @enderror"  name="no_telp" id="no_telp" value="{{ $item->no_telp }}">
+                            @error('no_telp')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror"  name="email" id="email" value="{{ $item->email }}">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror"  name="email" id="email" value="{{ $item->user->email }}">
                             @error('email')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -57,12 +72,13 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="status">Status</label>
-                            <select name="status" id="status" class="form-control">
-                                <option value="">-- Pilih Status --</option>
-                                <option @if($item->status == 0) selected @endif value="0">Tidak Aktif</option>
-                                <option @if($item->status == 1) selected @endif value="1">Aktif</option>
-                            </select>
+                            <label for="number_transaction">No. Transaksi</label>
+                            <input type="number" class="form-control @error('number_transaction') is-invalid @enderror"  name="number_transaction" id="number_transaction" value="{{ $item->number_transaction }}">
+                            @error('number_transaction')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                            <button class="btn btn-primary float-right">Simpan</button>

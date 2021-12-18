@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::orderBy('name','ASC')->get();
+        $roles = Role::whereNotIn('name',['member'])->orderBy('name','ASC')->get();
 
         return view('pages.user.create',[
             'title' => 'Tambah User',

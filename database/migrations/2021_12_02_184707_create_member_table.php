@@ -13,16 +13,16 @@ class CreateMemberTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_member', function (Blueprint $table) {
+        Schema::create('member', function (Blueprint $table) {
             $table->id();
-            $table->string('nama',25)->unique();
-            $table->string('id_telegram_user',100);
-            $table->string('email',50)->unique();
-            $table->string('no_hp',15)->unique();
-            $table->string('kode_prop',10)->nullable();
-            $table->string('kode_kota',10)->nullable();
-            $table->text('alamat')->nullable();
-            $table->integer('status')->default(0);
+            $table->string('nama_lengkap',50)->unique();
+            $table->date('tanggal_lahir');
+            $table->string('provinsi_tempat_tinggal',50)->unique();
+            $table->string('kota_tempat_tinggal',15)->unique();
+            $table->text('alamat_tinggal')->nullable();
+            $table->string('no_telp')->nullable();
+            $table->timestamp('upload_time')->nullable();
+            $table->bigInteger('number_transaction')->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();

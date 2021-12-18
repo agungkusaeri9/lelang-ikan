@@ -12,12 +12,12 @@
                 <div class="card-body">
                     <table class="table table-borderless">
                         <tr>
-                            <th width="150">Nama</th>
-                            <td>{{ $item->nama }}</td>
+                            <th width="150">Nama Lengkap</th>
+                            <td>{{ $item->nama_lengkap }}</td>
                         </tr>
                         <tr>
-                            <th>ID Telegram</th>
-                            <td>{{ $item->id_telegram_user }}</td>
+                            <th>Tanggal Lahir</th>
+                            <td>{{ $item->tanggal_lahir->translatedFormat('d-m-Y') }}</td>
                         </tr>
                         <tr>
                             <th>Email</th>
@@ -25,29 +25,27 @@
                         </tr>
                         <tr>
                             <th>No. Hp</th>
-                            <td>{{ $item->no_hp }}</td>
+                            <td>{{ $item->no_telp }}</td>
                         </tr>
                         <tr>
-                            <th>Kode Prop</th>
-                            <td>{{ $item->kode_prop }}</td>
+                            <th>Provinsi</th>
+                            <td>{{ $item->provinsi_tempat_tinggal }}</td>
                         </tr>
                         <tr>
-                            <th>Kode Kota</th>
-                            <td>{{ $item->kode_kota }}</td>
+                            <th>Kota</th>
+                            <td>{{ $item->kota_tempat_tinggal }}</td>
                         </tr>
                         <tr>
                             <th>Alamat</th>
-                            <td>{{ $item->alamat }}</td>
+                            <td>{{ $item->alamat_tinggal }}</td>
                         </tr>
                         <tr>
-                            <th>Status</th>
-                            <td>
-                                @if ($item->status == 1)
-                                Aktif
-                                @else 
-                                Tidak Aktif
-                                @endif
-                            </td>
+                            <th>No. Transaksi</th>
+                            <td>{{ $item->number_transaction }} </td>
+                        </tr>
+                        <tr>
+                            <th>Upload Time</th>
+                            <td>{{ $item->upload_time->translatedFormat('d-m-Y') }} </td>
                         </tr>
                         <tr>
                             <th>Aksi</th>
