@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function(){
         Route::resource('produk', ProdukController::class)->except('show');
         Route::resource('lelang', LelangController::class);
         Route::resource('group', GroupController::class)->except('show');
+        Route::resource('bid', BidController::class)->except('show','create');
+        Route::get('bid/{id}/bidder','BidController@bidder')->name('bid.bidder');
         Route::get('/trash/member', 'TrashController@member')->name('trash.member');
         Route::post('/trash/member/{id}', 'TrashController@memberRestore')->name('trash.member.restore');
         Route::delete('/trash/member/{id}', 'TrashController@memberDestroyPermanent')->name('trash.member.destroy.permanent');
